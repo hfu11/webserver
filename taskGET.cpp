@@ -81,4 +81,5 @@ void taskGET::Process(){
     
     evhttp_send_reply(req,HTTP_OK,"",outbuf);
 
+    fclose(fp);
 }

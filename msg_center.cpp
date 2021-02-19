@@ -15,6 +15,7 @@
 #include "msg_center.h"
 #include "taskGET.h"
 #include "taskPOST.h"
+#include "taskHEAD.h"
 
 using namespace std;
 
@@ -23,6 +24,12 @@ void msg_center::Dispatch(evhttp_request *req){
     switch(evhttp_request_get_command(req)){
         case EVHTTP_REQ_GET:{
             taskBase *t = new taskGET();
+            t->req = req;
+            pool->append(t);
+            break;
+        }
+        case EVHTTP_REQ_HEAD:{
+            taskBase *t = new taskHEAD();
             t->req = req;
             pool->append(t);
             break;
