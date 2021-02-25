@@ -4,8 +4,8 @@
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
-
-class Buffer;
+#include "../buffer/Buffer.h"
+#include <regex>
 
 class HttpRequest
 {

@@ -27,7 +27,7 @@ void Buffer::Retrieve(size_t len){
 
 void Buffer::RetrieveUntil(const char* end){
     assert(Peek() <= end);
-    Retrieve(end-Peek());
+    Retrieve(end - Peek());
 }
 
 void Buffer::RetrieveAll(){
