@@ -52,5 +52,5 @@ void taskPOST::Process(){
     //输出消息报头
     // evkeyvalq *outhead = evhttp_request_get_output_headers(req);
 
-
+    delete this;
 }

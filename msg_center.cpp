@@ -11,6 +11,7 @@
 #include <event2/buffer.h>
 #include <evhttp.h>
 #include <event2/http.h>
+#include <memory>
 
 #include "msg_center.h"
 #include "taskGET.h"
@@ -35,7 +36,6 @@ void msg_center::Dispatch(evhttp_request *req){
             break;
         }
         case EVHTTP_REQ_POST:{
-            //POST
             taskBase *t = new taskPOST();
             t->req = req;
             pool->append(t);

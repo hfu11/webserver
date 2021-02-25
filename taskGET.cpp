@@ -22,16 +22,16 @@ void taskGET::Process(){
     }
 
     //请求正文 (GET为空，POST有表单信息)
-    evbuffer* inbuf = evhttp_request_get_input_buffer(req);
+    // evbuffer* inbuf = evhttp_request_get_input_buffer(req);
     char buf[1024] = {0};
-    cout<<"=======Input Data======="<<endl;
-    while(evbuffer_get_length(inbuf)){
-        int len = evbuffer_remove(inbuf,buf,sizeof(buf)-1);
-        if(len > 0){
-            buf[len] = '\0';
-            cout<<buf<<endl;
-        }
-    }
+    // cout<<"=======Input Data======="<<endl;
+    // while(evbuffer_get_length(inbuf)){
+    //     int len = evbuffer_remove(inbuf,buf,sizeof(buf)-1);
+    //     if(len > 0){
+    //         buf[len] = '\0';
+    //         cout<<buf<<endl;
+    //     }
+    // }
 
     //回复浏览器
     //状态行 消息报头 响应正文
@@ -82,4 +82,8 @@ void taskGET::Process(){
     evhttp_send_reply(req,HTTP_OK,"",outbuf);
 
     fclose(fp);
+
+    cout<<"delete self"<<endl;
+    //自我销毁
+    delete this;
 }

@@ -25,7 +25,7 @@ using namespace std;
 
 
 void http_cb(struct evhttp_request *req, void *arg){
-
+    cout<<"con"<<endl;
     msg_center::Get()->Dispatch(req);
 }
 

@@ -75,4 +75,7 @@ void taskHEAD::Process(){
 
     fclose(fp);
 
+    //自我销毁
+    delete this;
+
 }
