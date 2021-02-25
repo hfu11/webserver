@@ -1,4 +1,5 @@
 #应用层Buffer实现
+原文：https://www.cnblogs.com/Solstice/archive/2011/04/17/2018801.html
 ###为什么non-blocking网络编程中应用层buffer是必须的？
 Non-blocking IO 的核心思想是避免阻塞在read()或write或其他IO系统调用上，这样可以最大限度的复用thread-of-control，让一个线程能够服务于多个socket连接。IO线程只能阻塞在epoll_wait()上。
 这样一来，应用层的buffer是必须的，每个TCP socket 都要有stateful 的 input buffer 和output buffer。
