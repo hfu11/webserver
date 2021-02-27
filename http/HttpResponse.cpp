@@ -32,7 +32,24 @@ HttpResponse::HttpResponse(){
     mmFileStat_m = {0};
 }
 
+HttpResponse::~HttpResponse(){
+    UnmapFile();
+}
+
+void HttpResponse::Init(const string& srcDir, string& path, bool isKeepAlive, int code){
+    assert(srcDir != "");
+    if(mmFile_m) {UnmapFile();}
+    code_m = code;
+    isKeepAlive_m = isKeepAlive;
+    path_m = path;
+    srcDir_m = srcDir;
+    mmFile_m = NULL;
+    mmFileStat_m = {0};
+}
+
+
 void HttpResponse::MakeResponse(Buffer& buff){
+    //判断请求的资源文件
     if(stat( (srcDir_m + path_m ).data() ,&mmFileStat_m) < 0 || S_ISDIR(mmFileStat_m.st_mode)){
         code_m = 404;
     }
@@ -140,4 +157,8 @@ void HttpResponse::ErrorContent(Buffer& buff, string msg){
 
     buff.Append("Content-length: " + to_string(body.size()) + "\r\n\r\n");
     buff.Append(body);
+}
+
+size_t HttpResponse::FileLen() const{
+    return mmFileStat_m.st_size;
 }

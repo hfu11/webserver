@@ -1,7 +1,12 @@
-files = msg_center.cpp taskGET.cpp taskPOST.cpp taskHEAD.cpp
+CXX = g++
+CFLAGS = -std=c++14 -Wall
 
-webserver:webserver.cpp $(files)
-	g++ $^ -o $@ -pthread -levent
+TARGET = webserver
+
+OBJS = buffer/*.cpp http/*.cpp pool/*.h server/*.cpp main.cpp
+
+all: $(OBJS)
+	$(CXX) $(CFLAGS) $(OBJS) -o $(TARGET) -pthread
 
 clean:
-	rm webserver
+	rm $(TARGET)

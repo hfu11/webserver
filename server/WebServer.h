@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <sys/socket.h>
 #include <fcntl.h>
+#include <functional>
 
 #include "Epoller.h"
 #include "../http/HttpConn.h"
@@ -38,7 +39,7 @@ public:
     void DealRead_m(HttpConn* client);
 
     void SendError_m(int fd, const char* info);
-    void ExtendTime_m(HttpConn* clinet);
+    void ExtentTime_m(HttpConn* clinet);
     void CloseConn_m(HttpConn* client);
 
     void OnRead_m(HttpConn* client);
@@ -60,7 +61,7 @@ public:
     uint32_t connEvent_m;
 
     //TODO Timer std::unique_ptr<HeapTimer>
-    std::unique_ptr<threadpool<HttpConn*>> threadpool_m;
+    std::unique_ptr<threadpool<HttpConn>> threadpool_m;
     std::unique_ptr<Epoller> epoller_m;
     std::unordered_map<int, HttpConn> users_m;
 };

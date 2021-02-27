@@ -7,6 +7,7 @@
 #include <sys/mman.h>
 #include <sys/types.h>
 #include <fcntl.h>
+#include <assert.h>
 
 #include "../buffer/Buffer.h"
 
